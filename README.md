@@ -32,4 +32,5 @@ The other is a more detailed tray menu. This one will open with a right click to
 ![dvu6Fc.png](https://imgpile.com/images/dvu6Fc.png)
 
 <a href="https://www.flaticon.com/free-icons/turn-off" title="turn off icons">Turn off icons created by feen - Flaticon</a>
+
 <a href="https://www.flaticon.com/free-icons/spatial" title="spatial icons">Spatial icons created by AbtoCreative - Flaticon</a>

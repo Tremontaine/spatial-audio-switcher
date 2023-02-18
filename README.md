@@ -16,4 +16,6 @@ To run the script you need to install [AutoHotkey v2](https://www.autohotkey.com
 * Provides a shortcut to open Windows Volume Mixer to control application volumes.
 * Windows + Alt + S shortcut can be used to open the tray menu below the mouse pointer.
 
-![Menu](https://imgpile.com/images/dvn6Fb.png)
+![Menu](Screenshot_Spatial.png)
+![Settings](Screenshot_Settings.png)
+![Config](Screenshot_Config.png)

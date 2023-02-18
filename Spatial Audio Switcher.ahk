@@ -18,6 +18,9 @@ Run "svcl.exe /SetSpatial `"DefaultRenderDevice`" `"`"", , "Hide"
 ; Create the tray menu.
 Tray := A_TrayMenu
 
+; Open Dolby Access or DTS Sound Unbound by one click.
+Tray.ClickCount := 1
+
 ; Icon's tooltip text, which is displayed when the mouse hovers over it.
 A_IconTip := "Spatial Audio Switcher"
 
@@ -55,17 +58,17 @@ Tray.Add
 ; Windows Sonic for Headphones, Dolby Atmos
 ; for Headphones and DTS Headphone:X is supported.
 Select := Menu()
-	Select.Add "&Dolby Atmos for Headphones", DolbyAtmosEnable
-	Select.SetIcon "&Dolby Atmos for Headphones", "dolby.png"
+	Select.Add "Dolby Atm&os for Headphones", DolbyAtmosEnable
+	Select.SetIcon "Dolby Atm&os for Headphones", "dolby.png"
 		DolbyAtmosEnable(*)
 		{
 		Run "svcl.exe /SetSpatial `"DefaultRenderDevice`" `"Dolby Atmos`"", , "Hide"
 		TraySetIcon "dolby.png"
 		Tray.Enable "&Disable Spatial Audio"
 		Tray.Enable "1&"
-		Tray.Rename "1&", "&Dolby Atmos for Headphones"
-		Tray.SetIcon "&Dolby Atmos for Headphones", "dolby.png"
-		Tray.Add "&Dolby Atmos for Headphones", DolbyAccess
+		Tray.Rename "1&", "Dolby Atm&os for Headphones"
+		Tray.SetIcon "Dolby Atm&os for Headphones", "dolby.png"
+		Tray.Add "Dolby Atm&os for Headphones", DolbyAccess
 			DolbyAccess(*)
 			{
 			Run "explorer.exe shell:appsFolder\DolbyLaboratories.DolbyAccess_rz1tebttyb220!App"
@@ -108,7 +111,7 @@ Settings := Menu()
 	Settings.Add "&Advanced", Advanced
 		Advanced(*)
 		{
-		Run "svcl.exe"
+		Run "SoundVolumeView.exe"
 		}
 	Settings.Add "&Modern", Modern
 		Modern(*)
@@ -126,34 +129,34 @@ Tray.Add "&Audio Settings", Settings
 ; Create a sub-menu to control speaker configuration
 ; between Stereo, 5.1 and 7.1. Defaults to Stereo.
 Configuration := Menu()
-	Configuration.Add "Stereo", Stereo
+	Configuration.Add "&Stereo", Stereo
 		Stereo(*)
 		{
 		Run "svcl.exe /SetSpeakersConfig `"DefaultRenderDevice`" 0x3 0x3 0x3", , "Hide"
-		Configuration.Check "Stereo"
-		Configuration.Uncheck "Five-point One"
-		Configuration.Uncheck "Seven-point One"
+		Configuration.Check "&Stereo"
+		Configuration.Uncheck "&Five-point One"
+		Configuration.Uncheck "S&even-point One"
 		}
-	Configuration.Add "Five-point One", FivePointOne
+	Configuration.Add "&Five-point One", FivePointOne
 		FivePointOne(*)
 		{
 		Run "svcl.exe /SetSpeakersConfig `"DefaultRenderDevice`" 0x3f 0x3f 0x3f", , "Hide"
-		Configuration.Uncheck "Stereo"
-		Configuration.Check "Five-point One"
-		Configuration.Uncheck "Seven-point One"
+		Configuration.Uncheck "&Stereo"
+		Configuration.Check "&Five-point One"
+		Configuration.Uncheck "S&even-point One"
 		}
-	Configuration.Add "Seven-point One", SevenPointOne
+	Configuration.Add "S&even-point One", SevenPointOne
 		SevenPointOne(*)
 		{
 		Run "svcl.exe /SetSpeakersConfig `"DefaultRenderDevice`" 0x63f 0x63f 0x63f", , "Hide"
-		Configuration.Uncheck "Stereo"
-		Configuration.Uncheck "Five-point One"
-		Configuration.Check "Seven-point One"
+		Configuration.Uncheck "&Stereo"
+		Configuration.Uncheck "&Five-point One"
+		Configuration.Check "S&even-point One"
 		}
 ; Add the sub-menu to control speaker configuration and set to Stereo.
 Tray.add "Speaker &Configuration", Configuration
 Run "svcl.exe /SetSpeakersConfig `"DefaultRenderDevice`" 0x3 0x3 0x3", , "Hide"
-Configuration.Check "Stereo"
+Configuration.Check "&Stereo"
 
 ; Add a shortcut to open Windows Volume Mixer to control application volumes.
 Tray.Add "&Volume Mixer", Volume
@@ -162,13 +165,13 @@ Tray.Add "&Volume Mixer", Volume
 	Run "ms-settings:apps-volume"
 	}
 
-; Make the first tray object bold.
+; Make the first line default.
 Tray.Default := "1&"
 
 ; Seperator.
 Tray.Add
 
-; Windows + Alt + O shortcut can be used to open
+; Windows + Alt + S shortcut can be used to open
 ; the tray menu below the mouse pointer.
 #!s::Tray.Show
 
@@ -181,8 +184,12 @@ Tray.Add "&Reload", Restart
 	}
 
 ; Function to exit the Spatial Audio Switcher.
+; Also disables spatial audio and sets to Stereo
 Tray.Add "&Exit", Exit
 	Exit(*)
 	{
+	Run "svcl.exe /SetSpatial `"DefaultRenderDevice`" `"`"", , "Hide"
+	Run "svcl.exe /SetSpeakersConfig `"DefaultRenderDevice`" 0x3 0x3 0x3", , "Hide"
+	Sleep 0
 	ExitApp
 	}

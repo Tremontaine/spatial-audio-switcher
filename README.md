@@ -14,6 +14,6 @@ To run the script you need to install [AutoHotkey v2](https://www.autohotkey.com
 * Provides shortcuts to open [SoundVolumeView](https://www.nirsoft.net/utils/sound_volume_view.html), Windows sound settings, and old style Windows sound settings.
 * Provides shortcuts to change speaker configuration between Stereo, 5.1 and 7.1.
 * Provides a shortcut to open Windows Volume Mixer to control application volumes.
-* Windows + Alt + O shortcut can be used to open the tray menu below the mouse pointer.
+* Windows + Alt + S shortcut can be used to open the tray menu below the mouse pointer.
 
-![Menu](https://imgpile.com/images/dgkzg4.png)
+![Menu](https://imgpile.com/images/dvn6Fb.png)

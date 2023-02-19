@@ -187,16 +187,16 @@ A_IconTip := "Spatial Audio Switcher"
 		Exclusive(*)
 		{
 		Run "Resources\svcl.exe /SetAllowExclusive `"DefaultRenderDevice`" 1", , "Hide"
-		Configuration.Check "&Exclusive"
-		Configuration.Uncheck "&Not Exclusive"
+		Exclusivity.Check "&Exclusive"
+		Exclusivity.Uncheck "&Not Exclusive"
 		}
 		
 	; Function to not allow applications to take exclusive control of default device	.
 		NonExclusive(*)
 		{
 		Run "Resources\svcl.exe /SetAllowExclusive `"DefaultRenderDevice`" 0", , "Hide"
-		Exclusivity.Check "&Exclusive"
-		Exclusivity.Uncheck "&Not Exclusive"
+		Exclusivity.Uncheck "&Exclusive"
+		Exclusivity.Check "&Not Exclusive"
 		}
 		
 	; Function to set the default speaker configuration to stereo.
@@ -352,7 +352,8 @@ A_IconTip := "Spatial Audio Switcher"
 		Run "Resources\svcl.exe /SetSpatial `"DefaultRenderDevice`" `"`"", , "Hide"
 		Run "Resources\svcl.exe /SetSpeakersConfig `"DefaultRenderDevice`" 0x3 0x3 0x3", , "Hide"
 		Run "Resources\svcl.exe /SetDefaultFormat `"DefaultRenderDevice`" 16 44100", , "Hide"
-		Run "Resources\svcl.exe /SetAllowExclusive `"DefaultRenderDevice`" 0", , "Hide"		Sleep 0
+		Run "Resources\svcl.exe /SetAllowExclusive `"DefaultRenderDevice`" 0", , "Hide"
+		Sleep 0
 		ExitApp
 		}
 
@@ -458,8 +459,8 @@ A_IconTip := "Spatial Audio Switcher"
 		SpatialApps.SetIcon "DTS Sound &Unbound", "Icons\dts.ico"
 
 ; Now we will make tray menu show our default settings.
-Exclusivity.Check "&Exclusive"
-Exclusivity.Uncheck "&Not Exclusive"
+Exclusivity.Uncheck "&Exclusive"
+Exclusivity.Check "&Not Exclusive"
 Configuration.Check "&Stereo"
 Configuration.Uncheck "&Five-point One"
 Configuration.Uncheck "S&even-point One"
